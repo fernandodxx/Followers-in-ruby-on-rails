@@ -1,0 +1,12 @@
+<h1><%= @user.email%></h1>
+<br/>
+<%= render "profile/follower_count", user: user %>
+<div><%= user.followees.count%>following</div>
+
+<% if user == current_user %>
+  <%= link_to "Edit Account", edit_user_registration_path %>
+  <%= button_to "logout", destroy_user_session_path, method: :delete %>
+<% elsif current_user %>
+  <%= render "profile/follow_button", user: user %>
+<% end %>
+   
